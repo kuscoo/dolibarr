@@ -117,6 +117,22 @@ if ($conf->use_javascript_ajax) {
 }
 print '</td></tr>';
 
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("CategorieSortByPosition").'</td>';
+print '<td align="center" width="20">'.$form->textwithpicto('', $langs->trans("CategorieSortByPositionHelp"), 1, 'help').'</td>';
+
+print '<td align="center" width="100">';
+if ($conf->use_javascript_ajax) {
+	print ajax_constantonoff('CATEGORY_SORT_BY_POSITION');
+} else {
+	if (!getDolGlobalString('CATEGORY_SORT_BY_POSITION')) {
+		print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_CATEGORY_SORT_BY_POSITION&token='.newToken().'">'.img_picto($langs->trans("Disabled"), 'off').'</a>';
+	} else {
+		print '<a href="'.$_SERVER['PHP_SELF'].'?action=del_CATEGORY_SORT_BY_POSITION&token='.newToken().'">'.img_picto($langs->trans("Enabled"), 'on').'</a>';
+	}
+}
+print '</td></tr>';
+
 print '</table>';
 
 // End of page
